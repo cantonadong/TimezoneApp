@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">世界时钟</string>
+    <string name="widget_description">显示城市当地时间，支持白色或黑色半透明背景。</string>
+</resources>

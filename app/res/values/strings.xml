@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Timezone</string>
+    <string name="widget_description">Local time for your city, with a light or dark translucent background.</string>
+    <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">#086BFF</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:statusBarColor">#FAFBFE</item>
+        <item name="android:navigationBarColor">#FAFBFE</item>
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
+</resources>
