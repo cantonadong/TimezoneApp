@@ -210,6 +210,27 @@ public final class City {
         group("刚果（金）","DR Congo","Africa/Kinshasa","kinshasa|金沙萨|Kinshasa");
         group("安哥拉","Angola","Africa/Luanda","luanda|罗安达|Luanda");
         group("马达加斯加","Madagascar","Indian/Antananarivo","antananarivo|塔那那利佛|Antananarivo");
+
+        // Keep one representative city for each country's distinct time-zone rules.
+        // Beijing and Hong Kong are the deliberate China exceptions requested by product design.
+        java.util.Set<String> kept=new java.util.HashSet<>(java.util.Arrays.asList(
+            "beijing","hongkong","tokyo","seoul","singapore","bangkok","hanoi","kualalumpur",
+            "jakarta","bali","manila","delhi","kathmandu","dhaka","colombo","karachi","dubai",
+            "riyadh","doha","tehran","jerusalem","sydney","brisbane","perth","adelaide","darwin",
+            "auckland","chatham","suva","honolulu","newyork","losangeles","chicago","denver",
+            "phoenix","anchorage","toronto","vancouver","stjohns","calgary","winnipeg","mexicocity",
+            "cancun","saopaulo","manaus","buenosaires","santiago","lima","bogota","london","paris",
+            "berlin","rome","madrid","lisbon","amsterdam","zurich","vienna","stockholm","oslo",
+            "helsinki","athens","istanbul","moscow","yekaterinburg","novosibirsk","vladivostok",
+            "reykjavik","cairo","johannesburg","nairobi","lagos","casablanca","accra","phnompenh",
+            "vientiane","yangon","bandarseribegawan","muscat","kuwaitcity","manama","baghdad",
+            "beirut","amman","baku","tbilisi","yerevan","almaty","tashkent","portmoresby",
+            "panamacity","havana","quito","caracas","montevideo","asuncion","lapaz","brussels",
+            "copenhagen","dublin","prague","budapest","warsaw","bucharest","sofia","belgrade",
+            "zagreb","ljubljana","bratislava","kyiv","addisababa","daressalaam","kampala","kigali",
+            "tunis","algiers","dakar","abidjan","kinshasa","luanda","antananarivo"
+        ));
+        ALL.removeIf(city->!kept.contains(city.id));
     }
     public static List<City> all() { return Collections.unmodifiableList(ALL); }
     public static City find(String id) { for(City c:ALL) if(c.id.equals(id))return c; return null; }
@@ -226,7 +247,7 @@ public final class City {
     }
     public String offset(ZonedDateTime now) {
         int mins=now.getOffset().getTotalSeconds()/60,abs=Math.abs(mins);
-        return "UTC"+(mins<0?"−":"+")+(abs/60)+(abs%60==0?"":String.format(Locale.ROOT,":%02d",abs%60));
+        return "UTC "+(mins<0?"−":"+")+(abs/60)+(abs%60==0?"":String.format(Locale.ROOT,":%02d",abs%60));
     }
     public String zoneName(ZonedDateTime now, boolean chinese) {
         TimeZone tz=TimeZone.getTimeZone(zone);

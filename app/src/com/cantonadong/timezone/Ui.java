@@ -58,7 +58,7 @@ final class Ui {
         void boundSummary(){LinearLayout info=(LinearLayout)getChildAt(1);TextView name=(TextView)info.getChildAt(0);name.setSingleLine(true);name.setEllipsize(android.text.TextUtils.TruncateAt.END);zone.setMaxLines(2);zone.setEllipsize(android.text.TextUtils.TruncateAt.END);}
         void refresh(){
             ZonedDateTime n=city.now();time.setText(city.time(n));
-            if(listStyle){zone.setText(city.country(zh));date.setText(city.offset(n));}
+            if(listStyle){zone.setText(city.country(zh)+"\n"+city.offset(n));date.setText("");date.setVisibility(View.GONE);}
             else{zone.setText(city.zoneName(n,zh)+"\n"+city.offset(n));date.setText(city.date(n,zh));}
         }
     }
